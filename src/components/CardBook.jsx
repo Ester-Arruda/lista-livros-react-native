@@ -1,5 +1,6 @@
 /* eslint-disable react/prop-types */
 import { View, Text, Image, StyleSheet, Pressable } from 'react-native';
+import { Platform } from 'react-native';
 
 export default function CardBook({book, action}) {
     return (
@@ -52,6 +53,13 @@ const styles = StyleSheet.create({
         shadowRadius: 3.84,
         shadowOpacity: 0.25,
         elevation: 1,
+        ...Platform.select({
+            android: {
+                justifyContent: 'center',
+                height: 'fit-content',
+                flexWrap: 'wrap'
+            },
+        })
     },
     containerIfos: {
         paddingHorizontal: 16,

@@ -9,6 +9,11 @@ export default function BookListPage({ navigation }) {
     const [filter, setFilter] = useState('');
     const [loading, setLoading] = useState(true);
 
+    
+    useEffect(() => {
+        fetchData();
+    }, [filter]);
+
     const fetchData = async () => {
         try {
             const response = await fetch(uri);
@@ -17,8 +22,12 @@ export default function BookListPage({ navigation }) {
                 id: key,
                 ...booksResponse[key]
             }));
-            const filteredList = filterBooks(arrayBooks);
-            setBooks(filteredList);
+            if(filter && filter.length > 0) {
+                const filteredList = filterBooks(arrayBooks);
+                setBooks(filteredList);
+            } else {
+                setBooks(arrayBooks)
+            }
         } catch (error) {
             console.error("Erro ao buscar dados:", error);
         } finally {
@@ -26,25 +35,19 @@ export default function BookListPage({ navigation }) {
         }
     };
 
-    const filterBooks = (bookList) => {
+    const filterBooks = (allBooks) => {
         if (filter.trim() !== '') {
-            return bookList.filter(book =>
+            return allBooks.filter(book =>
                 book.author.toLowerCase().includes(filter.toLowerCase()) ||
                 book.title.toLowerCase().includes(filter.toLowerCase()) ||
                 book.genre.toLowerCase().includes(filter.toLowerCase())
             );
         } else {
-            return bookList;
+            return allBooks;
         }
     };
 
-    useEffect(() => {
-        fetchData();
-    }, [filter]);
-
-    const actionFilterBook = (value) => {
-        setFilter(value);
-    };
+    const actionFilterBook = (value) => { setFilter(value); };
 
     return (
         <>
