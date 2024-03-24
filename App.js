@@ -13,8 +13,8 @@ const Stack = createNativeStackNavigator();
 const BookStack = () => {
   return (
     <Stack.Navigator>
-      <Stack.Screen name="BookListPage" component={BookListPage} />
-      <Stack.Screen name="DetailsBook" component={DetailsBook} />
+      <Stack.Screen name="BookListPage" component={BookListPage} options={{title: 'Lista de Livros'}}/>
+      <Stack.Screen name="DetailsBook" component={DetailsBook} options={{title: 'Detalhes de Livro'}}/>
     </Stack.Navigator>
   );
 };
@@ -23,8 +23,8 @@ const App = () => {
   return (
     <NavigationContainer>
       <Drawer.Navigator initialRouteName="BookStack">
-        <Drawer.Screen name="BookStack" component={BookStack} />
-        <Drawer.Screen name="SignUp" component={SignUp} />
+        <Drawer.Screen name="BookStack" component={BookStack} options={{title: 'Lista de Livros'}}/>
+        <Drawer.Screen name="SignUp" component={SignUp} options={{title: 'Cadastre-se'}}/>
       </Drawer.Navigator>
     </NavigationContainer>
   );
