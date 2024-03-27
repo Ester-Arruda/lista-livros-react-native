@@ -4,7 +4,7 @@ import { Platform } from 'react-native';
 
 export default function CardBook({book, action}) {
     return (
-        <Pressable onPress={() => action(book)}>
+        <Pressable onPress={() => action(book)}>  
             <View style={styles.container}>
                 <Image source={{ uri: book.cover}} style={{width: 100, height: 164}}/>
                 <View data-cy="book-info" style={styles.containerIfos}>
@@ -41,6 +41,7 @@ export default function CardBook({book, action}) {
 
 const styles = StyleSheet.create({
     container: {
+        height: '100%',
         flexDirection: 'row',
         margin: 4,
         padding: 2,
@@ -62,8 +63,11 @@ const styles = StyleSheet.create({
         })
     },
     containerIfos: {
+        // height: '100%',
         paddingHorizontal: 16,
         textAlign: 'center',
         justifyContent: 'center',
+        flexShrink: 1,
+
     },
 })

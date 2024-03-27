@@ -20,12 +20,6 @@ export default function Menu({ actionFilterBook }) {
                     <FontAwesome5 name="book" size={24} color="black" />
                     <Text style={styles.textBrand}>Bookers</Text>
                 </View>
-                {Platform.OS == "android" &&
-                    <View style={styles.logoSpaces}>
-                        <FontAwesome5 name="user" size={24} color="black" />
-                        <Text style={styles.login}>Logar</Text>
-                    </View>
-                }
             </View>
             <View style={styles.alignElements}>
                 <TextInput
@@ -39,12 +33,6 @@ export default function Menu({ actionFilterBook }) {
                     <FontAwesome5 name="search" size={22} color="black" />
                 </View>
             </View>
-            {Platform.OS == "web" &&
-                <View style={[styles.alignElements, styles.gap]}>
-                    <FontAwesome5 name="user" size={24} color="black" />
-                    <Text style={styles.login}>Logar</Text>
-                </View>
-            }
         </View>
     );
 }

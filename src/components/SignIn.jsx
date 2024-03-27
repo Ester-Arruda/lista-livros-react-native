@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { View, Text, TextInput, Pressable, ActivityIndicator, StyleSheet } from 'react-native';
-import { getAuth, createUserWithEmailAndPassword } from 'firebase/auth';
+import { getAuth, signInWithEmailAndPassword } from 'firebase/auth';
 import firebase from '../../firebase';
 import { Platform } from 'react-native';
 
@@ -12,7 +12,7 @@ export default function SignUp() {
     const [msg, setMsg] = useState('');
 
     const getMsgColor = () => {
-        if (msg.includes('Usuário cadastrado com sucesso')) {
+        if (msg.includes('Usuário autenticado')) {
             return '#BFF49F';
         } else {
             return '#FF9352';
@@ -22,9 +22,9 @@ export default function SignUp() {
     function checkUser() {
         setIsLoading(true);
         const auth = getAuth(firebase);
-        createUserWithEmailAndPassword(auth, userEmail, userPassword)
-            .then(userCredential => setMsg("Usuário cadastrado com sucesso!"))
-            .catch((error) => { setMsg("Ocorreu um erro!")}) 
+        signInWithEmailAndPassword(auth, userEmail, userPassword)
+            .then(userCredential => setMsg('Usuário autenticado'))
+            .catch((error) => { setMsg("Ocorreu um erro ao tentar entrar!")}) 
             .finally(() => setIsLoading(false)); 
     }
 
@@ -44,7 +44,7 @@ export default function SignUp() {
                         </View>
                         <View style={styles.btnLabel}>
                             <Pressable style={styles.btn} onPress={checkUser}>
-                                <Text style={styles.btnLabel}>Enviar</Text>
+                                <Text style={styles.btnLabel}>Acessar</Text>
                             </Pressable>
                         </View>
                         {msg ? (

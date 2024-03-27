@@ -6,6 +6,10 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import BookListPage from './src/screens/BookListPage';
 import DetailsBook from './src/components/DetailsBook';
 import SignUp from './src/components/SignUp';
+import SignIn from './src/components/SignIn';
+import RegisterImage from './src/components/RegisterImage';
+
+
 
 const Drawer = createDrawerNavigator();
 const Stack = createNativeStackNavigator();
@@ -25,6 +29,9 @@ const App = () => {
       <Drawer.Navigator initialRouteName="BookStack">
         <Drawer.Screen name="BookStack" component={BookStack} options={{title: 'Lista de Livros'}}/>
         <Drawer.Screen name="SignUp" component={SignUp} options={{title: 'Cadastre-se'}}/>
+        <Drawer.Screen name="SignIn" component={SignIn} options={{title: 'Entrar'}}/>
+        
+        <Drawer.Screen name="RegisterImage" component={RegisterImage} options={{title: 'Registrar Imagem'}}/>
       </Drawer.Navigator>
     </NavigationContainer>
   );
