@@ -7,7 +7,8 @@ import BookListPage from './src/screens/BookListPage';
 import DetailsBook from './src/components/DetailsBook';
 import SignUp from './src/components/SignUp';
 import SignIn from './src/components/SignIn';
-import RegisterImage from './src/components/RegisterImage';
+import RegisterImagePage from './src/screens/RegisterImagePage';
+import GalleryPage from './src/screens/GalleryPage';
 
 
 
@@ -30,8 +31,8 @@ const App = () => {
         <Drawer.Screen name="BookStack" component={BookStack} options={{title: 'Lista de Livros'}}/>
         <Drawer.Screen name="SignUp" component={SignUp} options={{title: 'Cadastre-se'}}/>
         <Drawer.Screen name="SignIn" component={SignIn} options={{title: 'Entrar'}}/>
-        
-        <Drawer.Screen name="RegisterImage" component={RegisterImage} options={{title: 'Registrar Imagem'}}/>
+        <Drawer.Screen name="RegisterImagePage" component={RegisterImagePage} options={{title: 'Registrar Imagem'}}/>
+        <Drawer.Screen name="GalleryPage" component={GalleryPage} options={{title: 'Galeria'}}/>
       </Drawer.Navigator>
     </NavigationContainer>
   );

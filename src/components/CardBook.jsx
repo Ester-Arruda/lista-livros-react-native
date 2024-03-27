@@ -1,5 +1,5 @@
 /* eslint-disable react/prop-types */
-import { View, Text, Image, StyleSheet, Pressable } from 'react-native';
+import { View, Text, Image, StyleSheet, Pressable, Platform } from 'react-native';
 import { Platform } from 'react-native';
 
 export default function CardBook({book, action}) {
@@ -60,6 +60,9 @@ const styles = StyleSheet.create({
                 height: 'fit-content',
                 flexWrap: 'wrap'
             },
+            ios: {
+                borderRadius: 10,
+            }
         })
     },
     containerIfos: {

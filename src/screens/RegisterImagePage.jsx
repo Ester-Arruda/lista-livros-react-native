@@ -2,10 +2,14 @@ import { useEffect, useState } from 'react'
 import { View, Text, Pressable, StyleSheet, Image } from 'react-native';
 import { Camera } from 'expo-camera'
 
+import firebase from '../../firebase'
+import { getStorage, ref, uploadBytes } from 'firebase/storage'
+
 export default function RegisterImage() {
     const [cameraPermission, setCameraPermission] = useState(false)
     const [camera, setCamera] = useState(null)
     const [photoUri, setPhotoUri] = useState(null)
+    const [msg, setMsg] = useState(null)
 
     useEffect(() => {
         getCameraPermission()
@@ -25,10 +29,30 @@ export default function RegisterImage() {
         }
     }
 
+    async function savePhoto() {
+        try {
+            const firebaseStorage = getStorage(firebase)
+            const name = `photos${new Date()}.jpeg`
+            const photoRef = ref(firebaseStorage, name)
+            uploadPhoto(photoRef)
+        }
+        catch(error) {
+            setMsg(error.message)
+        }
+    }
+
+    async function uploadPhoto(photoRef) {
+        const response = await fetch(photoUri)
+        const photo = await response.blob()
+        const uploadResult = await uploadBytes(photoRef, photo)
+        if (uploadResult) setPhotoUri(null)
+        else setMsg('algo deu errado')
+    }
+
     return (
         <>
             <View style={styles.container}>
-                {!photoUri && (
+                {cameraPermission && !photoUri && (
                     <>
                         <View style={styles.cameraContainer}>
                             <Camera style={styles.camera} ref={(refCamera) => setCamera(refCamera)} type={Camera.Constants.Type.back} />
@@ -41,9 +65,16 @@ export default function RegisterImage() {
                 {photoUri && (
                     <>
                         <Image source={{ uri: photoUri }} style={styles.photoTakePicture} />
-                        <Pressable style={styles.btnTakePicture} onPress={() => setPhotoUri(null)}>
-                            <Text>Tirar Outra Foto</Text>
-                        </Pressable>
+                        <View>
+                            <Pressable style={[styles.btnTakePicture, {left: 100}]} onPress={() => savePhoto()}>
+                                <Text>Salvar</Text>
+                            </Pressable>
+                        </View>
+                        <View>
+                            <Pressable style={[styles.btnTakePicture, {left: -100}]} onPress={() => setPhotoUri(null)}>
+                                <Text>Deletar</Text>
+                            </Pressable>
+                        </View>
                     </>
                 )}
             </View>

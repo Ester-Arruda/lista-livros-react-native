@@ -1,8 +1,7 @@
 import React, { useState } from 'react';
-import { View, Text, TextInput, Pressable, ActivityIndicator, StyleSheet } from 'react-native';
+import { View, Text, TextInput, Pressable, ActivityIndicator, StyleSheet, Platform } from 'react-native';
 import { getAuth, createUserWithEmailAndPassword } from 'firebase/auth';
 import firebase from '../../firebase';
-import { Platform } from 'react-native';
 
 
 export default function SignUp() {
@@ -87,11 +86,21 @@ const styles = StyleSheet.create({
         borderWidth: 2, width: '100%', 
         paddingVertical: 5,
         marginTop: 10,
-        paddingHorizontal: 5
+        paddingHorizontal: 5,
+        ...Platform.select({
+            ios: {
+                borderRadius: 10,
+            },
+        })
     },
     btn: {
         paddingVertical: 10,
         backgroundColor:'#F9D076',
+        ...Platform.select({
+            ios: {
+                borderRadius: 10,
+            },
+        })
     },
     btnLabel: {
         textAlign: 'center',

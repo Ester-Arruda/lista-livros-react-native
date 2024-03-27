@@ -83,6 +83,9 @@ const styles = StyleSheet.create({
             android: {
                 marginBottom: 10,
             },
+            ios: {
+                borderRadius: 10
+            }
         })
     },
     icon_search: {
