@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import { View, Text, TextInput, Pressable, ActivityIndicator, StyleSheet, Platform } from 'react-native';
 import { getAuth, signInWithEmailAndPassword } from 'firebase/auth';
 import firebase from '../../firebase';
-import { Platform } from 'react-native';
 
 
 export default function SignUp() {

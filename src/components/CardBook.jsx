@@ -1,6 +1,5 @@
 /* eslint-disable react/prop-types */
 import { View, Text, Image, StyleSheet, Pressable, Platform } from 'react-native';
-import { Platform } from 'react-native';
 
 export default function CardBook({book, action}) {
     return (
